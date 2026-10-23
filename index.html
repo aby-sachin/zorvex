@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZORVEX — Play Beyond Limits</title>
+<style>
+:root{--bg:#090b12;--panel:#151a27;--lime:#b8ff42;--purple:#a78bfa;--muted:#a4acc0}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#f5f7fc;font-family:Arial,sans-serif}
+a{color:inherit;text-decoration:none}
+header{height:72px;padding:0 7%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #252b3b}
+.logo{font-size:23px;font-weight:900;letter-spacing:3px}
+.logo b{display:inline-grid;place-items:center;background:var(--lime);color:#090b12;border-radius:7px;width:32px;height:32px;margin-right:9px}
+nav{display:flex;gap:22px;font-size:13px;color:var(--muted)}
+.hero{padding:65px 7%;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:30px;min-height:430px}
+.eyebrow{color:var(--lime);font-size:11px;font-weight:bold;letter-spacing:2px}
+h1{font-size:clamp(48px,7vw,82px);line-height:.95;letter-spacing:-4px;margin:20px 0}
+h1 span,h2 span{color:var(--lime)}
+p{color:var(--muted);line-height:1.7}
+.btn{display:inline-block;background:var(--lime);color:#10130a;padding:14px 19px;border-radius:7px;font-weight:bold;font-size:13px;margin-top:12px}
+.art{height:300px;display:grid;place-items:center;position:relative;background:radial-gradient(ellipse,#4934a566,transparent 65%)}
+.orbit{position:absolute;width:250px;height:170px;border:1px solid #a78bfa88;border-radius:50%;transform:rotate(-35deg)}
+.orbit.two{transform:rotate(40deg);width:190px;height:270px;border-color:#b8ff4266}
+.z-core{display:grid;place-items:center;width:135px;height:135px;background:var(--lime);color:#10130a;font-size:100px;font-weight:900;border-radius:28px;transform:rotate(-10deg);box-shadow:0 0 65px #b8ff4233}
+section.games{padding:35px 7% 70px;border-top:1px solid #252b3b}
+h2{font-size:clamp(28px,4vw,40px);letter-spacing:-1px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.card{background:var(--panel);border:1px solid #292f40;border-radius:12px;overflow:hidden}
+.card-art{height:145px;display:grid;place-items:center;font-size:55px;background:radial-gradient(circle,#354b2a,#151a27 68%)}
+.card:nth-child(2) .card-art{background:radial-gradient(circle,#55368a,#151a27 68%)}
+.card:nth-child(3) .card-art{background:radial-gradient(circle,#175c63,#151a27 68%)}
+.card-body{padding:16px}
+.card-body p{font-size:12px;margin:7px 0}
+.card button{background:var(--lime);border:0;border-radius:6px;padding:10px 13px;font-weight:bold;cursor:pointer}
+footer{padding:25px 7%;border-top:1px solid #252b3b;color:var(--muted);font-size:12px}
+#game-area{display:none;padding:30px 7% 60px}
+.gamebox{max-width:850px;margin:auto}
+.game-top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+canvas{display:block;width:100%;height:auto;border:1px solid #343c51;border-radius:10px;background:#101427;touch-action:manipulation}
+.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:15px 0}
+button{font-family:inherit}
+.controls button{background:var(--lime);border:0;border-radius:7px;padding:12px 17px;font-weight:bold;cursor:pointer}
+#score{color:var(--lime)}
+@media(max-width:650px){header{padding:0 5%}nav{gap:12px}.hero{grid-template-columns:1fr;padding:35px 6%;gap:0}.art{height:220px;grid-row:1}.z-core{width:100px;height:100px;font-size:75px}.orbit{width:200px;height:140px}.orbit.two{height:220px;width:150px}.hero-copy{padding:15px 0 25px}section.games{padding:30px 6% 50px}.cards{grid-template-columns:1fr}.card-art{height:125px}#game-area{padding:25px 5% 45px}}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="#" onclick="home();return false"><b>Z</b>ZORVEX</a>
+  <nav><a href="#games">Games</a><a href="#about">About</a></nav>
+</header>
+<main id="home">
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">YOUR NEXT LEVEL STARTS HERE</div>
+      <h1>PLAY BEYOND<br><span>LIMITS.</span></h1>
+      <p>Quick games. Big scores. Pure fun.<br>Jump in straight from your browser.</p>
+      <a class="btn" href="#games">EXPLORE GAMES →</a>
+    </div>
+    <div class="art"><div class="orbit"></div><div class="orbit two"></div><div class="z-core">Z</div></div>
+  </section>
+  <section class="games" id="games">
+    <div class="eyebrow">THE ARCADE</div>
+    <h2>Choose your <span>challenge.</span></h2>
+    <p>Pick a game. Beat your best. Come back stronger.</p>
+    <div class="cards">
+      <article class="card">
+        <div class="card-art">⚡</div>
+        <div class="card-body"><h3>Neon Dash</h3><p>Jump, dodge and chase a high score.</p><button onclick="play()">PLAY NOW ↗</button></div>
+      </article>
+      <article class="card"><div class="card-art">✦</div><div class="card-body"><h3>Space Survival</h3><p>Outlast the cosmic chaos.</p><p>Coming soon</p></div></article>
+      <article class="card"><div class="card-art">▦</div><div class="card-body"><h3>Block Logic</h3><p>Think fast. Solve smarter.</p><p>Coming soon</p></div></article>
+    </div>
+  </section>
+  <section class="games" id="about"><div class="eyebrow">BUILT FOR PLAYERS</div><h2>Small breaks. <span>Legendary scores.</span></h2><p>ZORVEX is an independent browser arcade. More games are on the way.</p></section>
+</main>
+<section id="game-area">
+  <div class="gamebox">
+    <a href="#" onclick="home();return false" style="color:var(--lime)">← BACK TO ARCADE</a>
+    <div class="game-top"><div><div class="eyebrow">ZORVEX ORIGINAL · GAME 001</div><h2>NEON <span>DASH.</span></h2><p>Jump over obstacles and survive!</p></div><h3>Score: <span id="score">0</span> &nbsp; Best: <span id="best">0</span></h3></div>
+    <canvas id="game" width="800" height="360"></canvas>
+    <div class="controls"><button onclick="start()">START / RESTART</button><button onclick="jump()">JUMP</button><span style="color:var(--muted);font-size:12px">Space, ↑, click or tap to jump</span></div>
+  </div>
+</section>
+<footer>© <span id="year"></span> ZORVEX · Independent browser arcade · Made for fun</footer>
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+const c=document.getElementById('game'),x=c.getContext('2d');
+let active=false,dead=false,frame=0,score=0,best=Number(localStorage.getItem('zorvex-best')||0),speed=5,blocks=[],p={y:290,vy:0,ground:true};
+document.getElementById('best').textContent=best;
+function play(){document.getElementById('home').style.display='none';document.getElementById('game-area').style.display='block';start();window.scrollTo(0,0)}
+function home(){document.getElementById('home').style.display='block';document.getElementById('game-area').style.display='none';active=false;window.scrollTo(0,0)}
+function start(){active=true;dead=false;frame=0;score=0;speed=5;blocks=[];p.y=290;p.vy=0;p.ground=true}
+function jump(){if(!active){if(dead)start();return}if(p.ground){p.vy=-12;p.ground=false}}
+c.addEventListener('pointerdown',jump);
+document.addEventListener('keydown',e=>{if((e.code==='Space'||e.code==='ArrowUp')&&document.getElementById('game-area').style.display==='block'){e.preventDefault();jump()}});
+function draw(){
+x.clearRect(0,0,800,360);x.fillStyle='#101427';x.fillRect(0,0,800,360);
+x.strokeStyle='#a78bfa1b';for(let i=0;i<800;i+=32){x.beginPath();x.moveTo(i,0);x.lineTo(i,360);x.stroke()}
+x.fillStyle='#b8ff42';x.fillRect(0,326,800,3);x.fillStyle='#18251a';x.fillRect(0,329,800,31);
+if(active){frame++;score=Math.floor(frame/5);speed=Math.min(9,5+score/150);if(frame%Math.max(38,75-Math.floor(score/8))===0)blocks.push({x:810,w:20+Math.random()*24,h:25+Math.random()*45});p.vy+=.55;p.y+=p.vy;if(p.y>=290){p.y=290;p.vy=0;p.ground=true}blocks.forEach(b=>b.x-=speed);blocks=blocks.filter(b=>b.x+b.w>0);for(const b of blocks){if(100+26>b.x&&100<b.x+b.w&&p.y+32>326-b.h){active=false;dead=true;if(score>best){best=score;localStorage.setItem('zorvex-best',best);document.getElementById('best').textContent=best}}}}
+x.shadowColor='#b8ff42';x.shadowBlur=16;x.fillStyle='#b8ff42';x.fillRect(100,p.y,26,32);x.shadowBlur=0;
+for(const b of blocks){x.fillStyle='#a78bfa';x.shadowColor='#a78bfa';x.shadowBlur=10;x.fillRect(b.x,326-b.h,b.w,b.h);x.shadowBlur=0}
+document.getElementById('score').textContent=score;
+if(!active){x.fillStyle='#080a10cc';x.fillRect(0,0,800,360);x.textAlign='center';x.fillStyle='#b8ff42';x.font='bold 32px Arial';x.fillText(dead?'GAME OVER':'READY TO DASH?',400,160);x.fillStyle='white';x.font='16px Arial';x.fillText(dead?'Press START / RESTART to try again':'Press START / RESTART to begin',400,193)}
+requestAnimationFrame(draw)}
+draw();
+</script>
+</body>
+</html>
